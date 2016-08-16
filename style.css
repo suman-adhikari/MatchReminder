@@ -1,0 +1,23 @@
+  body{
+        height: 100px;
+          background-color: Blue;
+          background-image:
+            linear-gradient(
+              to right,
+              #0F1546,
+              #0A328A,
+              #2C60C5,
+              #3064CA
+            );
+    }
+
+    #container{
+        margin:10% 20%;
+        background-color: rgba(0,0,0,0.1);
+        padding:1% 2%;
+        color:white;
+        font-size: 4em;
+        text-align: center;
+        font-family: Consolas;
+
+    }
