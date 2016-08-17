@@ -37,7 +37,6 @@ def timeLeft(date_time):
     today = datetime.datetime.today();
 
     remaining_time = matchdate-today
-    #print str(remaining_time)[:-7]
     return str(remaining_time)[:-7]
 
 def getImages(div):
