@@ -40,27 +40,40 @@ def timeLeft(date_time):
     #print str(remaining_time)[:-7]
     return str(remaining_time)[:-7]
 
+def getImages(div):
+    site_url = "http://www.chelseafc.com"
+    images = div.find_all("img")
+    img1 = site_url + images[0]["src"]
+    img2 = site_url + images[1]["src"]
+    return [img1,img2]
+
 def nextmatch(soup):
     div = soup.find("div", class_="next-match")
+    images = getImages(div);
     date_time = div.find("span",class_="match-date-time").string
     match_time_left = timeLeft(date_time)
     teams = div.find("p",class_='match-teams').text
     match = remove_all_whitespace(teams)
-    webfile(match_time_left,match)
+    webfile(match_time_left,match,images)
 
 
 
-def webfile(match_time,Teams):
+def webfile(match_time,Teams,images):
     file = open(fileurl, 'w')
 
     txt = '<!doctype html>' \
           '<html lang="en">' \
           '<head><meta charset="UTF-8"><title>Next Match</title>' \
-          '<link rel="stylesheet" href="style.css"/></head>' \
+          '<link rel="stylesheet" href="style.css"/>' \
+          '<link href="https://fonts.googleapis.com/css?family=Bungee+Hairline|Monoton" rel="stylesheet">'\
+          '<link href="https://fonts.googleapis.com/css?family=Bungee+Hairline|Changa|Monoton" rel="stylesheet">'\
+          '</head >' \
           '<body>' \
+          '<div id="abc">chelsea  next  match</div>'\
           '<div id="container">' \
-          '<span>' + Teams  +'</span></br>' \
-          '<span>' + match_time + '</span>' \
+          '<span><img src="'+images[0]+'"></span>'\
+          '<span>'+ Teams +' <br>' + match_time +' </span>'\
+          '<span><img src="'+ images[1] +'"></span>'\
           '</div>' \
           '</body>' \
           '</html>'
